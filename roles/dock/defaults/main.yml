@@ -1,0 +1,43 @@
+---
+# Whether to make the dock hidden.
+# Options: [yes|no]
+dock_autohide: yes
+
+# Position of the dock on the screen.
+# Options: [bottom|left|right]
+dock_screen_position: bottom
+
+# Minimize applications to dock using an effect.
+# Options: [genie|scale|suck]
+dock_minimize_effect: genie
+
+# Size of the dock items.
+# Options: integer between [16-128]
+dock_tile_size: 64
+
+# Enable magnification of dock items on mouseover.
+dock_magnification: no
+
+# Magnification size on mouseover. Only used when dock_magnification is yes.
+# Options: integer between [16-128]
+dock_magnification_size: 128
+
+# Minimize windows into application icon.
+# Options: [yes|no]
+dock_minimize_into_application_icon: yes
+
+# Show process indicators below the dock items.
+# Options: [yes|no]
+dock_show_process_indicators: yes
+
+# Remove dock items based on label name.
+dock_remove_items: []
+# - Launchpad
+# - Apple TV
+
+# Persist dock items and optionally order items.
+dock_persist_items: []
+# - path: /Applications/Google Chrome.app/
+#   pos: 2
+# - path: /System/Applications/System Preferences.app/
+#   pos: 10

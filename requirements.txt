@@ -1,0 +1,7 @@
+ansible-core==2.11.6
+ansible-lint==5.2.0
+autopep8==1.5.7
+jmespath==0.10.0
+pylint>=2.11.1
+python-magic-bin<0.4.14
+safety==1.10.3

@@ -1,0 +1,17 @@
+---
+- name: Check brew command is available
+  ansible.builtin.shell:
+    cmd: command -v brew >/dev/null 2>&1
+  register: does_brew_exist
+  failed_when: does_brew_exist.rc == 1
+  changed_when: no
+
+- name: Install dockutil through Homebrew
+  community.general.homebrew:
+    name: dockutil
+    state: present
+
+- import_tasks: set-preferences.yml
+
+- import_tasks: manage-items.yml
+

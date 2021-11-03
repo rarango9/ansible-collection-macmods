@@ -1,0 +1,35 @@
+---
+- name: Set dock preferences
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  loop:
+    - key: autohide
+      type: bool
+      value: "{{ dock_autohide }}"
+    - key: orientation
+      type: string
+      value: "{{ dock_screen_position }}"
+    - key: mineffect
+      type: string
+      value: "{{ dock_minimize_effect }}"
+    - key: magnification
+      type: bool
+      value: "{{ dock_magnification }}"
+    - key: largesize
+      type: float
+      value: "{{ dock_magnification_size }}"
+    - key: tilesize
+      type: float
+      value: "{{ dock_tile_size }}"
+    - key: minimize-to-application
+      type: bool
+      value: "{{ dock_minimize_into_application_icon }}"
+    - key: show-process-indicators
+      type: bool
+      value: "{{ dock_show_process_indicators }}"
+  notify:
+    - Restart dock
