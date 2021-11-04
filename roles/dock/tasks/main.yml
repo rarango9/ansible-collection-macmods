@@ -6,7 +6,7 @@
   failed_when: does_brew_exist.rc == 1
   changed_when: no
 
-- name: Install dockutil through Homebrew
+- name: Ensure dockutil is installed through Homebrew
   community.general.homebrew:
     name: dockutil
     state: present
