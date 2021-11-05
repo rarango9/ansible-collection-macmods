@@ -2,5 +2,4 @@
 - hosts: localhost
   remote_user: root
 
-  roles:
-    - dock
+- import_playbook: test-dock.yml

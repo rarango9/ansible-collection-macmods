@@ -1,38 +1,110 @@
-Role Name
-=========
+# Dock
 
-A brief description of the role goes here.
+Manage preferences and items on the MacOS Dock to automate the configuration.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- `homebrew`: The Missing Package Manager for macOS (or Linux).
+- `dockutil`: A command line utility for managing MacOS dock items.
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```yaml
+# Whether to make the dock hidden.
+# Options: yes|no
+# Default: yes
+dock_autohide: yes
 
-Dependencies
-------------
+# Position of the dock on the screen.
+# Options: bottom|left|right
+# Default: bottom
+dock_screen_position: bottom
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+# Minimize applications to dock using an effect.
+# Options: genie|scale|suck
+# Default: genie
+dock_minimize_effect: genie
 
-Example Playbook
-----------------
+# Size of the dock items.
+# Options: Integer between 16-128
+# Default: 64
+dock_tile_size: 64
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+# Enable magnification of dock items on mouseover.
+# Options: yes|no
+# Default: no
+dock_magnification: no
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+# Magnification size on mouseover. Only used when dock_magnification is yes.
+# Options: Integer between 16-128
+# Default: 64
+dock_magnification_size: 128
 
-License
--------
+# Minimize windows into application icon.
+# Options: yes|no
+# Default: yes
+dock_minimize_into_application_icon: yes
 
-BSD
+# Show process indicators below the dock items.
+# Options: yes|no
+# Default: yes
+dock_show_process_indicators: yes
 
-Author Information
-------------------
+# Remove dock items based on label name.
+# Options: List of dock item labels
+# Default: Empty List
+dock_remove_items: []
+# - Launchpad
+# - Apple TV
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+# Persist dock items and optionally order items.
+# Options: List of dock items with label, path and pos (optional) properties.
+# Default: Empty List
+dock_persist_items: []
+# - label: Google Chrome
+#   path: /Applications/Google Chrome.app/
+#   pos: 2
+# - label: System Preferences
+#   path: /System/Applications/System Preferences.app/
+#   pos: 10
+```
+
+## Dependencies
+
+- `rarango9.command_line_tools` (Work in Progress)
+- `rarango9.homebrew` (Work in Progress)
+- `community.general`
+
+## Example Playbook
+
+```yaml
+- hosts: localhost
+
+  vars:
+    dock_autohide: yes
+
+    dock_screen_position: bottom
+
+    dock_remove_items:
+      - Launchpad
+      - Apple TV
+
+    dock_persist_items:
+      - label: Google Chrome
+        path: /Applications/Google Chrome.app/
+        pos: 2
+      - label: System Preferences
+        path: /System/Applications/System Preferences.app/
+        pos: 10
+
+  roles:
+    - rarango9.dock
+```
+
+## License
+
+MIT
+
+## Author Information
+
+Created by Rob Arango as part of the MacMods Ansible Collection.
