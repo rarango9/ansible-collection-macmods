@@ -139,3 +139,4 @@ dmypy.json
 galaxy/
 
 # User defined ignores, add anything you want here
+tmp/
