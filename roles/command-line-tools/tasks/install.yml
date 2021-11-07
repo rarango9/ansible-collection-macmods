@@ -1,0 +1,26 @@
+---
+- name: Create hidden install file for Command Line Tools
+  ansible.builtin.file:
+    path: /private/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    mode: 0644
+    state: touch
+
+- name: List Command Line Tools updates
+  ansible.builtin.command: softwareupdate -l
+  register: clt_available_updates
+  changed_when: no
+
+- name: Install Xcode Command Line Tools, be patient
+  ansible.builtin.command:
+    cmd: /usr/sbin/softwareupdate --install "{{ package_name }}"
+  vars:
+    package_name: "{{ clt_available_updates.stdout
+      | regex_findall('Command Line Tools for Xcode-.*', multiline=True)
+      | last }}"
+  args:
+    creates: /Library/Developer/CommandLineTools/usr/bin/git
+
+- name: Remove hidden install file for Command Line Tools
+  ansible.builtin.file:
+    path: /private/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    state: absent
