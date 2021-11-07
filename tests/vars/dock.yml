@@ -1,0 +1,12 @@
+---
+dock_remove_items:
+  - Apple TV
+  - Launchpad
+
+dock_persist_items:
+  - label: Google Chrome
+    path: "/Applications/Google Chrome.app/"
+    pos: 1
+  - label: System Preferences
+    path: "/System/Applications/System Preferences.app/"
+    pos: 17
