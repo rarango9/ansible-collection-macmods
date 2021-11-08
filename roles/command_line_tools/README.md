@@ -10,7 +10,7 @@ Installs MacOS Command Line Tools.
 
 ```yaml
 # Force installation of MacOS Command Line Tools even if already installed.
-clt_force_install: no
+command_line_tools_force_install: no
 ```
 
 ## Dependencies
@@ -23,10 +23,10 @@ clt_force_install: no
 - hosts: localhost
 
   vars:
-    clt_force_install: yes
+    command_line_tools_force_install: yes
 
   roles:
-    - rarango9.command-line-tools
+    - rarango9.command_line_tools
 ```
 
 ## License

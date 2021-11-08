@@ -2,6 +2,11 @@
 - hosts: all
   gather_facts: yes
 
+  vars_prompt:
+    - name: ansible_become_password
+      prompt: Enter SUDO password
+      private: yes
+
   pre_tasks:
     - name: Load test vars
       include_vars: "{{ item }}"
@@ -10,8 +15,8 @@
       tags: [always]
 
   roles:
-    - role: command-line-tools
-      tags: [command-line-tools]
+    - role: command_line_tools
+      tags: [command_line_tools]
 
     - role: dock
       tags: [dock]

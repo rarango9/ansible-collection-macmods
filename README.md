@@ -12,6 +12,7 @@ Collection of Ansible Roles to automate configuration for MacOS machines.
 ## Roles
 
 - `rarango9.macmods.dock` ([docs](roles/dock/README.md))
+- `rarango9.macmods.command_line_tools` ([docs](roles/command_line_tools/README.md))
 
 ## License
 
