@@ -18,5 +18,8 @@
     - role: command_line_tools
       tags: [command_line_tools]
 
+    - role: homebrew
+      tags: [homebrew]
+
     - role: dock
       tags: [dock]
