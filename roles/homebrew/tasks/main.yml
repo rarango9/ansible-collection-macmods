@@ -1,0 +1,10 @@
+---
+- import_tasks: install.yml
+
+- name: Lookup brew cache path
+  command: "{{ homebrew_prefix }}/bin/brew --cache"
+  register: homebrew_cache_path
+  changed_when: no
+  check_mode: no
+
+- import_tasks: manage.yml

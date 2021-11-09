@@ -3,7 +3,7 @@
   ansible.builtin.file:
     path: /Library/Developer/CommandLineTools
     state: absent
-  when: clt_force_install
+  when: command_line_tools_force_install
   become: yes
 
 - name: Check if Command Line Tools are installed

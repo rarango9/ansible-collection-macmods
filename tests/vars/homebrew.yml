@@ -1,0 +1,26 @@
+---
+homebrew_taps_install:
+  - hashicorp/tap
+
+homebrew_taps_remove:
+  - hashicorp/tap
+
+homebrew_packages_install:
+  - name: git
+    state: latest
+
+homebrew_packages_remove:
+  - abcde
+
+homebrew_packages_upgrade_all: yes
+
+homebrew_casks_install:
+  - name: google-chrome
+    state: latest
+    greedy: yes
+
+homebrew_casks_remove:
+  - alfred
+  - wireshark
+
+homebrew_casks_upgrade_all: yes
