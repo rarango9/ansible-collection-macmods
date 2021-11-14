@@ -18,13 +18,17 @@
   notify:
     - Restart dock
 
-- name: Position dock items
-  ansible.builtin.command:
-    cmd: dockutil --move "{{ item.label }}" --position "{{ item.pos }}" --no-restart
+- name: Position dock items # noqa risky-shell-pipe
+  ansible.builtin.shell: |
+    if [[ "$(dockutil --find '{{ item.label }}' | sed -r 's/.*slot (.*) in.*/\1/g')" != "{{ item.pos }}" ]]; then
+      dockutil --move "{{ item.label }}" --position "{{ item.pos }}" --no-restart
+      echo "changed"
+    fi
+  register: changed
+  changed_when: "changed.stdout == 'changed'"
   loop: "{{ dock_persist_items | sort(attribute='pos') }}"
   when:
     - item.pos is defined
     - item.pos > 0
-    - lookup("pipe", "dockutil --find '" + item.label + "' | sed -r 's/.*slot (.*) in.*/\\1/g'") | int != item.pos
   notify:
     - Restart dock
