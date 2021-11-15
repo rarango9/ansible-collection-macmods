@@ -1,7 +1,7 @@
 ---
 namespace: rarango9
 name: macmods
-version: 0.0.3
+version: 0.0.7
 readme: README.md
 authors:
   - Rob Arango
@@ -13,7 +13,7 @@ license_file: "LICENSE"
 tags: []
 
 dependencies:
-  community.general: ">=3.8.1"
+  community.general: ">=4.0.1"
 
 repository: https://github.com/rarango9/ansible-collection-macmods
 documentation: https://github.com/rarango9/ansible-collection-macmods/README.md
